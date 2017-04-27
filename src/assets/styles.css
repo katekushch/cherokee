@@ -1,0 +1,61 @@
+html {
+    background: url("./astro.png") no-repeat;
+    background-size: cover;
+}
+body {
+    margin: 0;
+    color: #fff;
+    min-height: 100vh;
+}
+label {
+    font-size: 14px;
+}
+a {
+    text-decoration: none;
+}
+.txt-center {
+    text-align: center;
+}
+.txt-small {
+    font-size: 12px;
+}
+.img-btm {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/*styles for datepicker*/
+.mydpicon {
+   display: none;
+}
+.mydp {
+    width: auto !important;
+    border: none !important;
+}
+.mydp .btnleftborder {
+    border: none !important;
+}
+.btnpicker, .mydp .selectiongroup, input.selection {
+    background: transparent !important;
+}
+.selectiongroup {
+    width: 100px;
+}
+.selbtngroup, .btnpicker {
+    width: 100% !important;
+}
+input.selection, .selbtngroup {
+    height: 15px !important;
+}
+.mydp .selection {
+    color: #fff !important;
+}
+/* end styles for datepicker*/
+@media (max-width: 480px) {
+    .mob-hidden {
+        display: none;
+    }
+}

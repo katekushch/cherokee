@@ -1,0 +1,96 @@
+<main>
+  <div class="col-md-6 left-column txt-center">
+    <img src="../../assets/logo.png" class="logo">
+    <img src="../../assets/photo.png" class="photo mob-hidden">
+  </div>
+  <div class="col-md-6 right-column">
+    <div class="form-container">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input type="text" placeholder="First name" id="firstName" class="form-control"
+            formControlName="firstName" required />
+          <div *ngIf="formErrors.firstName" class="alert alert-danger">
+            {{ formErrors.firstName }}
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Last name" id="lastName" class="form-control"
+            formControlName="lastName" required />
+          <div *ngIf="formErrors.lastName" class="alert alert-danger">
+            {{ formErrors.lastName }}
+          </div>
+        </div>
+        <div class="form-group">
+          <input id="email" type="text" class="form-control" placeholder="Email"
+            formControlName="email" required />
+          <div *ngIf="formErrors.email" class="alert alert-danger">
+            {{ formErrors.email }}
+          </div>
+        </div>
+        <div class="form-group">
+          <input id="important" type="text" class="form-control" placeholder="Name of important person"
+            formControlName="important" required />
+          <div *ngIf="formErrors.important" class="alert alert-danger">
+            {{ formErrors.important }}
+          </div>
+        </div>
+        <div class="form-group">
+          <select id="idRelationship" class="form-control placeholder"
+            formControlName="idRelationship" required>
+            <option disabled value="0"> Relationship Status </option>
+            <option *ngFor="let relation of relations" value="{{ relation.value }}"> {{ relation.label }}</option>
+          </select>
+          <div *ngIf="formErrors.idRelationship" class="alert alert-danger">
+            {{ formErrors.idRelationship }}
+          </div>
+        </div>
+        <div class="form-group">
+          <select id="idWish" class="form-control placeholder"
+            formControlName="idWish" required>
+            <option disabled value="0"> Greatest Wish </option>
+            <option *ngFor="let wish of wishes" value="{{ wish.value }}"> {{ wish.label }}</option>
+          </select>
+          <div *ngIf="formErrors.idWish" class="alert alert-danger">
+            {{ formErrors.idWish }}
+          </div>
+        </div>
+        <div class="form-group">
+          <input id="heartbreak" type="text" class="form-control" placeholder="Name of first heartbreak"
+            formControlName="heartbreak" required />
+          <div *ngIf="formErrors.heartbreak" class="alert alert-danger">
+            {{ formErrors.heartbreak }}
+          </div>
+        </div>
+        <div class="form-group">
+          <input id="fear" type="text" class="form-control" placeholder="Biggest Fear"
+            formControlName="fear" required />
+          <div *ngIf="formErrors.fear" class="alert alert-danger">
+            {{ formErrors.fear }}
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea id="question" rows="6" type="text" class="form-control" placeholder="Free psychic question here"
+            formControlName="question" ></textarea>
+        </div>
+        <label for="birthday">Date of birth:</label>
+        <my-date-picker name="birthday" [options]="myDatePickerOptions" placeholder="YYYY/MM/DD"
+          required id="birthday" formControlName="birthday">
+        </my-date-picker>
+        <div>
+          <input type="checkbox" id="agree" class="form-control" formControlName="agree" required>
+          <label for="agree" class="txt-small">I have read and accept the <a href="" class="txt-white"> Terms & Conditions </a> </label>
+        </div>
+        <div class="txt-center">
+          <button type="submit" class="btn btn-default" [disabled]="!userForm.valid">Send</button>
+        </div>
+      </form>
+      <div class="testimonials mob-hidden">
+        <p>Testimonials</p>
+        <div class="comment" *ngFor="let comment of comments">
+          <p class="comment-text txt-small"> {{ comment.text }} </p>
+          <p class="txt-small">{{comment.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
