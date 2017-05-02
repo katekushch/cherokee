@@ -20,8 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 export class ServerAppModule {
 
   constructor(private transferState: TransferState) { }
-
-  // Gotcha
+  
   ngOnBootstrap = () => {
     this.transferState.inject();
   }

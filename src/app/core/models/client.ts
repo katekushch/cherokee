@@ -12,12 +12,5 @@ export class Client {
   agree: boolean = false;
   ref: string = '';
   referenceForm: string = 'cherokee-nakoma';
-    
-  //constructor(client?) {
-  //  for (let key in client) {
-  //    if (this[key] !== undefined ) {
-  //      this[key] = user[key];
-  //    }
-  //  }
-  //}
+  
 }

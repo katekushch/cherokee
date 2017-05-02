@@ -6,7 +6,6 @@ import { platformServer, renderModuleFactory } from '@angular/platform-server';
 import { ServerAppModule } from './app/server-app.module';
 import { ngExpressEngine } from './modules/ng-express-engine/express-engine';
 import { ROUTES } from './routes';
-//import { App } from './api/app';
 import { enableProdMode } from '@angular/core';
 
 import { CONFIG } from "./env";
@@ -14,7 +13,6 @@ import { CONFIG } from "./env";
 enableProdMode();
 const fs = require ('fs');
 const app = express();
-//const api = new App();
 const port = CONFIG.port;
 const baseUrl = `http://localhost:${port}`;
 
@@ -40,12 +38,6 @@ ROUTES.forEach(route => {
     console.timeEnd(`GET: ${req.originalUrl}`);
   });
 });
-
-//app.get('/data', (req, res) => {
-//  console.time(`GET: ${req.originalUrl}`);
-//  res.json(api.getData());
-//  console.timeEnd(`GET: ${req.originalUrl}`);
-//});
 
 app.listen(CONFIG.port,() => {
 	console.log(`Listening at ${baseUrl}`);
