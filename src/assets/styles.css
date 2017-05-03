@@ -74,6 +74,10 @@ input.selection, .selbtngroup {
 .mydp .selectorarrowleft:after, .mydp .selectorarrowleft:before {
     left: 120px !important;
 }
+
+.mydp .icon-mydpup:before {
+    content: "\e804";
+}
 /* end styles for datepicker*/
 @media (max-width: 480px) {
     .mob-hidden {

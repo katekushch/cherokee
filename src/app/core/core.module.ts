@@ -5,7 +5,8 @@ import { MainService } from './services/mainService';
 
 
 export function RestangularConfigFactory(RestangularProvider) {
-  RestangularProvider.setBaseUrl('https://api.astro.2muchcoffee.com');
+  RestangularProvider.setBaseUrl('http://api.astro.2muchcoffee.com');
+  RestangularProvider.setFullResponse(true);
 }
 
 @NgModule({

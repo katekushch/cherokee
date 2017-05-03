@@ -1,0 +1,12 @@
+h1 {
+    width: 100%;
+    position: absolute;
+    font-size: 50px;
+    top: 50%;
+    margin-top: -25px;
+}
+span {
+    padding: 20px 40px;
+    border: 1px solid #fff;
+    background: rgba(0,0,0,0.35);
+}

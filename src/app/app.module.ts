@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeView } from './home/home-view.component';
@@ -15,7 +14,6 @@ import { CoreModule } from './core/core.module';
 @NgModule({
 	imports: [
     CommonModule,
-    //HttpModule,
     FormsModule,
     ReactiveFormsModule,
     MyDatePickerModule,
@@ -23,7 +21,8 @@ import { CoreModule } from './core/core.module';
     TransferHttpModule,
     CoreModule,
     RouterModule.forRoot([
-      { path: '', component: HomeView, pathMatch: 'full'},
+      { path: '', component: HomeView, pathMatch: 'full' },
+      { path: 'thanks', loadChildren: './thanks/thanks.module#ThanksModule' }
     ])
 	],
 	declarations: [ AppComponent, HomeView, FormComponent ],

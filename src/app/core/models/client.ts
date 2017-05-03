@@ -10,7 +10,6 @@ export class Client {
   question: string = '';
   birthday;
   agree: boolean = false;
-  ref: string = '';
   referenceForm: string = 'cherokee-nakoma';
   
 }

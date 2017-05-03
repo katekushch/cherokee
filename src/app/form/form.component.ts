@@ -6,6 +6,8 @@ import { IMyOptions } from 'mydatepicker';
 
 import { ageValidator } from './custom.validators';
 import { MainService } from '../core/services/mainService';
+//import { Router } from 'express-serve-static-core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'form-component',
@@ -13,10 +15,9 @@ import { MainService } from '../core/services/mainService';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  submitted: boolean = false;
-
   client: Client = new Client();
   userForm: FormGroup;
+  postForm$;
   
   formErrors = {
     "firstName": "",
@@ -27,7 +28,6 @@ export class FormComponent implements OnInit {
     "idWish": "",
     "heartbreak": "",
     "fear": "",
-    //"question": "",
     "birthday": "",
     "agree": "",
   };
@@ -68,6 +68,10 @@ export class FormComponent implements OnInit {
   };
   myDatePickerOptions: IMyOptions = {
     showClearDateBtn: false,
+    //showSelectorArrow: true,
+    //monthSelector: true,
+    //yearSelector: true,
+    showTodayBtn: false
   };
   relations: Array<any> = [
     {value: 1, label: 'single'},
@@ -90,6 +94,7 @@ export class FormComponent implements OnInit {
   
   constructor(
     public mainService: MainService,
+    private router: Router,
     private fb: FormBuilder
   ) {}
   
@@ -131,8 +136,7 @@ export class FormComponent implements OnInit {
       "agree": [this.client.agree, [
         Validators.required,
       ]],
-      "referenceForm": [this.client.referenceForm],
-      "ref": [this.client.ref],
+      "referenceForm": [this.client.referenceForm]
     });
     
     this.userForm.valueChanges
@@ -157,9 +161,15 @@ export class FormComponent implements OnInit {
     }
   }
   onSubmit() {
-    this.submitted = true;
     this.userForm.value.birthday = `${this.userForm.value.birthday.formatted} 00:00`;
-    this.mainService.onSubmit(this.userForm.value);
-    console.log(this.userForm.value);
+    this.postForm$ = this.mainService.onSubmit(this.userForm.value).subscribe((res) => {
+      if (res.status == 200) {
+        this.router.navigate(['/thanks']);
+      }
+      else {
+        console.log(res);
+      }
+     this.postForm$.unsubscribe();
+    });
   }
 }

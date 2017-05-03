@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Restangular } from 'ngx-restangular';
 
 
@@ -11,7 +11,7 @@ export class MainService {
   }
   
   onSubmit(userForm) {
-    //return this.restangular.all('astro').post(userForm);
+    return this.restangular.all('v1').all('users').all('signup').post(userForm, {'per-page':'2000'});
   }
   
 }
