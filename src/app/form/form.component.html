@@ -80,5 +80,8 @@
   </div>
   <div class="txt-center">
     <button type="submit" class="btn btn-default" [disabled]="!userForm.valid">Send</button>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
   </div>
 </form>

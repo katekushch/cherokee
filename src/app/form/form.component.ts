@@ -8,6 +8,7 @@ import { ageValidator } from './custom.validators';
 import { MainService } from '../core/services/mainService';
 //import { Router } from 'express-serve-static-core';
 import { Router } from '@angular/router';
+import { isBoolean } from 'util';
 
 @Component({
   selector: 'form-component',
@@ -18,6 +19,7 @@ export class FormComponent implements OnInit {
   client: Client = new Client();
   userForm: FormGroup;
   postForm$;
+  errorMessage;
   
   formErrors = {
     "firstName": "",
@@ -71,7 +73,7 @@ export class FormComponent implements OnInit {
     //showSelectorArrow: true,
     //monthSelector: true,
     //yearSelector: true,
-    showTodayBtn: false
+    showTodayBtn: false,
   };
   relations: Array<any> = [
     {value: 1, label: 'single'},
@@ -162,14 +164,14 @@ export class FormComponent implements OnInit {
   }
   onSubmit() {
     this.userForm.value.birthday = `${this.userForm.value.birthday.formatted} 00:00`;
-    this.postForm$ = this.mainService.onSubmit(this.userForm.value).subscribe((res) => {
-      if (res.status == 200) {
-        this.router.navigate(['/thanks']);
-      }
-      else {
-        console.log(res);
-      }
-     this.postForm$.unsubscribe();
+    this.postForm$ = this.mainService.onSubmit(this.userForm.value).subscribe(
+      (res) => {
+      this.router.navigate(['/thanks']);
+      this.postForm$.unsubscribe();
+    },
+      (err) => {
+      this.errorMessage = err.data[0].message;
+        this.postForm$.unsubscribe();
     });
   }
 }
